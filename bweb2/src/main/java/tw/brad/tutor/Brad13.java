@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tw.brad.utils.BradUtils;
+import tw.brad.utils.MyCalc;
+
 // View
 @WebServlet("/Brad13")
 public class Brad13 extends HttpServlet {
@@ -18,6 +21,17 @@ public class Brad13 extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		
+		String web = "";
+		try {
+			MyCalc myCalc = (MyCalc)request.getAttribute("myCalc");
+			String view = (String)request.getAttribute("view");
+			web = BradUtils.loadView(view);
+			out.printf(web, myCalc.getX(), myCalc.getY(), myCalc.plus());
+			
+		} catch (Exception e) {
+			//System.out.println(e);
+			out.printf(web, "", "","");			
+		}
 		
 	}
 

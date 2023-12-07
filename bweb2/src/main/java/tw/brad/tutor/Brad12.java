@@ -25,11 +25,13 @@ public class Brad12 extends HttpServlet {
 		try {
 			MyCalc myCalc = new MyCalc(x, y);
 			request.setAttribute("myCalc", myCalc);
+			
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 		}
 		
 		// 3. 呈現 View
+		request.setAttribute("view", "view2");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Brad13");
 		dispatcher.forward(request, response);
 		
