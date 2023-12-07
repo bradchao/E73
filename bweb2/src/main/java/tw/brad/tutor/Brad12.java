@@ -20,15 +20,15 @@ public class Brad12 extends HttpServlet {
 		// 1. 接收參數
 		String x = request.getParameter("x");
 		String y = request.getParameter("y");
-		//tring op = request.getParameter("op");
+		String op = request.getParameter("op");
 		
 		// 2. 計算
 		try {
-			MyCalc myCalc = new MyCalc(x, y);
+			MyCalc myCalc = new MyCalc(x, y, op);
 			request.setAttribute("myCalc", myCalc);
 			
 		} catch (Exception e) {
-			//System.out.println(e);
+			System.out.println(e);
 		}
 		
 		// 3. 呈現 View
