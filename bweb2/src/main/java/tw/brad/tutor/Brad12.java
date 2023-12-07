@@ -20,6 +20,7 @@ public class Brad12 extends HttpServlet {
 		// 1. 接收參數
 		String x = request.getParameter("x");
 		String y = request.getParameter("y");
+		//tring op = request.getParameter("op");
 		
 		// 2. 計算
 		try {
@@ -31,7 +32,7 @@ public class Brad12 extends HttpServlet {
 		}
 		
 		// 3. 呈現 View
-		request.setAttribute("view", "view2");
+		request.setAttribute("view", "view1");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Brad13");
 		dispatcher.forward(request, response);
 		

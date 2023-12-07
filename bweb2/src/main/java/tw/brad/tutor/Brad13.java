@@ -25,12 +25,40 @@ public class Brad13 extends HttpServlet {
 		try {
 			MyCalc myCalc = (MyCalc)request.getAttribute("myCalc");
 			String view = (String)request.getAttribute("view");
+			String op = request.getParameter("op");
+			String[] ops = {"","","",""};
+			String result = "";
+			if (op != null) {
+				switch (op) {
+					case "1": 
+						ops[0] = "selected";
+						result = myCalc.plus() + "";
+						break;
+					case "2": 
+						ops[1] = "selected"; 
+						result = myCalc.minu() + "";
+						break;
+					case "3": 
+						ops[2] = "selected"; 
+						result = myCalc.mult() + "";
+						break;
+					case "4": 
+						ops[3] = "selected"; 
+						result = myCalc.div();
+						break;
+					default: ops[0] = "selected"; break;
+				}
+			}
+			
 			web = BradUtils.loadView(view);
-			out.printf(web, myCalc.getX(), myCalc.getY(), myCalc.plus());
+			out.printf(web, myCalc.getX(), 
+					ops[0], ops[1], ops[2], ops[3],
+					myCalc.getY(), 
+					result);
 			
 		} catch (Exception e) {
-			//System.out.println(e);
-			out.printf(web, "", "","");			
+			System.out.println(e);
+			out.printf(web, "", "", "", "", "", "","");			
 		}
 		
 	}
