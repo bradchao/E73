@@ -20,11 +20,13 @@ public class Brad14 extends HttpServlet {
 		
 		int w = 400, h = 24;
 		double rate = 0;
+		
 		try {
 			rate = Double.parseDouble(request.getParameter("rate")) ;	 // 50%
 		}catch(Exception e) {
-			
+			System.out.println(e);
 		}
+		
 		response.setContentType("image/jpeg");
 		
 		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
