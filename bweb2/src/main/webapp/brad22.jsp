@@ -17,8 +17,13 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-	
-	<form>
+	<script type="text/javascript">
+		function checkForm(){
+			
+			return true;
+		}
+	</script>
+	<form onsubmit="return checkForm();">
 		Start: <input type="number" name='start'>
 		<input type="number" name='rows'>
 		x
