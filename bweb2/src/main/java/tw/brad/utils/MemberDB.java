@@ -16,7 +16,8 @@ public class MemberDB {
 	private static final String SQL_QUERY = "SELECT * FROM member";
 	private static final String SQL_INSERT = 
 		"INSERT INTO member (account,passwd,cname) VALUES (?,?,?)";
-	
+	private static final String SQL_LOGIN = 
+			"SELECT * FROM member WHERE account = ?";
 	private Connection conn;
 	private ResultSet rs;
 	String[] fieldNames;
@@ -40,6 +41,27 @@ public class MemberDB {
 		
 		return pstmt.executeUpdate();
 	}
+	
+	public boolean login(String account, String passwd) 
+			throws SQLException {
+			PreparedStatement pstmt = conn.prepareStatement(SQL_LOGIN);
+			pstmt.setString(1, account);
+			ResultSet rset = pstmt.executeQuery();
+			if ( rset.next()) {
+				String hashPasswd = rset.getString("passwd");
+				if (BCrypt.checkpw(passwd, hashPasswd)) {
+					return true;
+				}else {
+					System.out.println("PASSWD FAILURE");
+					return false;
+				}
+			}else {
+				System.out.println("ACCOUNT FAILURE");
+				return false;
+			}
+
+		
+		}
 	
 	public void queryDB() throws SQLException{
 		queryDB(SQL_QUERY);
