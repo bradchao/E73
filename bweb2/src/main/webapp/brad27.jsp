@@ -14,10 +14,10 @@
 		<form>
 			<input name='x' value=""/>
 			<select name="op">
-				<option value="0" >+</option>
-				<option value="1" >-</option>
-				<option value="2" >x</option>
-				<option value="3" >/</option>				
+				<option value="0" >加</option>
+				<option value="1" >減</option>
+				<option value="2" >乘</option>
+				<option value="3" >除</option>				
 			</select>
 			<input name='y' value=""/>
 			<input type='submit' value='=' />
