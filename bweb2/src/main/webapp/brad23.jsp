@@ -10,7 +10,7 @@
 	<h1>Brad Big Company</h1>
 	<hr />
 	Register Form<br />
-	<form action="Register">
+	<form action="Register" method="post">
 		Account: <input name="account" /><br />
 		Password: <input type="password" name="passwd" /><br />
 		Name: <input name="cname" /><br />
