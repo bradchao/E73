@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class BradUtils {
 	public static String loadView(String view) throws Exception {
 		String viewFolder = 
@@ -52,12 +55,19 @@ public class BradUtils {
 	
 	public static LinkedList<HashMap<String, String>> parseGift(String json) {
 		LinkedList<HashMap<String, String>> data = new LinkedList<>();
-		HashMap<String, String> row = new HashMap<>();
-		row.put("k1", "v1");
-		row.put("k2", "v2");
-		row.put("k3", "v3");
-		row.put("k4", "v4");
-		data.add(row);
+		
+		JSONArray root = new JSONArray(json);
+		for (int i = 0; i< root.length(); i++) {
+			JSONObject gift = root.getJSONObject(i);
+			HashMap<String, String> row = new HashMap<>();
+			row.put("name", gift.getString("Name"));
+			row.put("tel",  gift.getString("ContactTel"));
+			row.put("city",  gift.getString("County"));
+			row.put("town",  gift.getString("Township"));
+			data.add(row);
+		}
+		
+		
 		return data;
 	}
 	
