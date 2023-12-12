@@ -41,6 +41,14 @@ public class BradUtils {
 		return "" + (int)(Math.random()*101);
 	}
 	
+	public static int nextPage(String page, String pages) {
+		int intPage = Integer.parseInt(page);
+		int intPages = (int)Double.parseDouble(pages);
+		if (intPage < intPages) intPage++;
+		return intPage;
+	}
+	
+	
 	
 	
 }
