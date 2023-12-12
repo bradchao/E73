@@ -3,6 +3,8 @@ package tw.brad.utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public class BradUtils {
 	public static String loadView(String view) throws Exception {
@@ -48,7 +50,16 @@ public class BradUtils {
 		return intPage;
 	}
 	
-	
+	public static LinkedList<HashMap<String, String>> parseGift(String json) {
+		LinkedList<HashMap<String, String>> data = new LinkedList<>();
+		HashMap<String, String> row = new HashMap<>();
+		row.put("k1", "v1");
+		row.put("k2", "v2");
+		row.put("k3", "v3");
+		row.put("k4", "v4");
+		data.add(row);
+		return data;
+	}
 	
 	
 }

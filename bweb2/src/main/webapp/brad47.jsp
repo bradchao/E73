@@ -22,10 +22,12 @@
 	</c:set>
 	<c:set var="pages">${Double.valueOf(pages0).intValue() }</c:set>
 	
-	<c:set var="page" value="${param.page == null || param.page < 1 ? 1 : param.page }" />
+	<c:set var="page0" value="${param.page == null || param.page < 1 ? 1 : param.page }" />
+	<c:set var="page">${Integer.parseInt(page0) }</c:set>
+	
 	<c:set var="start" value="${(page - 1) * rpp }" />
 	<c:set var="prev" value="${page <= 1 ? 1 : page - 1 }" />
-	<c:set var="next" value="${BradUtils.nextPage(page, pages) }" />
+	<c:set var="next" value="${page >= pages ? page : page + 1 }" />
 	
 	<sql:query var="rs2">
 		SELECT * FROM food LIMIT ${start }, ${rpp }
@@ -36,7 +38,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-
+		${page > pages }
 		<h1>美食小吃列表</h1>
 		<hr />
 		總筆數: ${rs.rowCount }<br />
