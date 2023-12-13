@@ -6,6 +6,38 @@
 			function test1(){
 				$('#id1').load('brad52.jsp?max=' + $('#max').val());
 			}
+			function test2(){
+				$.get("brad52.jsp?max=" + $('#max').val(), function(data, status){
+					if (status == 'success'){
+						$('#id1').html(data);
+					}
+				});
+			}
+			function test3(){
+				$.post("brad52.jsp?max=1000", 
+						{
+							"max" : $('#max').val()
+						}, 
+						function(data,status){
+							if (status == 'success'){
+								$('#id1').html(data);
+							}							
+						}
+						);
+			}
+			function test4(){
+				$.ajax({
+					url: "brad52.jsp?max=1000",
+					method: "post",
+					data: {
+						max : $('#max').val()
+					},
+					success: function(data){
+						$('#id1').html(data);
+					},
+					contentType:"application/json; charset=utf-8",
+				});
+			}
 		</script>
 		
 		
@@ -19,6 +51,11 @@
 		<button onclick="test2()">Test2</button><br />
 		<button onclick="test3()">Test3</button><br />
 		<button onclick="test4()">Test4</button><br />
+		<hr />
+		<form action="brad52.jsp?max=1000" method="post">
+			<input type="number" name="max" />
+			<input type="submit" value="Test5" />
+		</form>
 	
 	
 	</body>
