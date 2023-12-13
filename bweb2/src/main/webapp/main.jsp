@@ -13,13 +13,13 @@
 		/> 
 	<c:if test="${!empty param.delid }">
 		<sql:update>
-			DELETE FROM cust WHERE id = ?
+			DELETE FROM member WHERE id = ?
 			<sql:param>${param.delid }</sql:param>
 		</sql:update>
 	</c:if>	
 	
 	<sql:query var="rs">
-		SELECT * FROM cust
+		SELECT * FROM member
 	</sql:query>
 	<head>
 		<meta charset="UTF-8">
@@ -32,9 +32,8 @@
 	<table border="1" width="100%">
 		<tr>
 			<th>id</th>
+			<th>Account</th>
 			<th>Name</th>
-			<th>tel</th>
-			<th>Birthday</th>
 			<th>Del</th>
 			<th>Edit</th>
 		</tr>
@@ -44,14 +43,13 @@
 				return isDel;
 			}
 		</script>
-		<c:forEach items="${rs.rows }" var="cust">
+		<c:forEach items="${rs.rows }" var="member">
 			<tr>
-				<td>${cust.id }</td>
-				<td>${cust.cname }</td>
-				<td>${cust.tel }</td>
-				<td>${cust.birthday }</td>
-				<td><a href="?delid=${cust.id }" onclick="return delAlert('${cust.cname }');">Del</a></td>
-				<td><a href="edit.jsp?editid=${cust.id }">Edit</a></td>
+				<td>${member.id }</td>
+				<td>${member.account }</td>
+				<td>${member.cname }</td>
+				<td><a href="?delid=${member.id }" onclick="return delAlert('${member.cname }');">Del</a></td>
+				<td><a href="edit.jsp?editid=${member.id }">Edit</a></td>
 			</tr>
 		
 		</c:forEach>
