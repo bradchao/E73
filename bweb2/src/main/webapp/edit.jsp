@@ -17,6 +17,17 @@
 			<sql:param>${param.editid }</sql:param>
 		</sql:query>
 	</c:if>	
+	<c:if test="${!empty param.updateid }">
+		<sql:update>
+			UPDATE member SET account = ?, passwd = ?, cname = ? WHERE id = ?
+			<sql:param>${param.account }</sql:param>
+			<sql:param>${BCrypt.hashpw(param.passwd, BCrypt.gensalt()) }</sql:param>
+			<sql:param>${param.cname }</sql:param>
+			<sql:param>${param.updateid }</sql:param>			
+		</sql:update>
+		<c:redirect url="main.jsp"></c:redirect>
+	</c:if>
+	
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -24,7 +35,7 @@
 	<body>
 	<h1>Edit</h1>
 	<hr />
-		<form method="post">
+		<form action="?updateid=${rs.rows[0].id }" method="post">
 			Account: <input id="account" name="account" value="${rs.rows[0].account }" /><br />
 			Password: <input type="password" name="passwd" /><br />
 			Name: <input name="cname" value="${rs.rows[0].cname }"/><br />
