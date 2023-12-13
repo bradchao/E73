@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script>
+			function test1(){
+				$('#id1').load('brad52.jsp?max=' + $('#max').val());
+			}
+		</script>
+		
+		
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		Lottery: <span id="id1"></span><br />
+		<input type="number" id="max" /><br />
+		<button onclick="test1()">Test1</button><br />
+		<button onclick="test2()">Test2</button><br />
+		<button onclick="test3()">Test3</button><br />
+		<button onclick="test4()">Test4</button><br />
+	
+	
+	</body>
+</html>
