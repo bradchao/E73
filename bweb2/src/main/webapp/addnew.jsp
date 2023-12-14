@@ -27,6 +27,12 @@
 	</c:if>
 	
 	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script>
+			function checkAccount(){
+				$("#mesg").load("checkAccount.jsp?account=" + $("#account").val());
+			}
+		</script>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 	</head>
@@ -34,7 +40,7 @@
 		<h1>AddNew</h1>
 		<hr />
 		<form method="post">
-			Account: <input name="account" /><br />
+			Account: <input id="account" name="account" onblur="checkAccount()" /><span id="mesg"></span><br />
 			Password: <input type="password" name="passwd" /><br />
 			Name: <input name="cname" /><br />
 			<input type="submit" value="Add" />
