@@ -16,9 +16,31 @@
 					error: doError
 				});
 			}
-			function doSuccess(){
+			function doSuccess(json){
 				console.log("success");
+				
+				var jsonObj = $.parseJSON(json);
+				page = jsonObj.page;
+				if (jsonObj.error == 1) page = 1;
+				if (jsonObj.error == 2) page = 10;
 				$("#page").html(page);
+				
+				if (jsonObj.error != 0) return;
+				
+				$('#table').empty();
+				$(jsonObj.data).each(function(i, row){
+					//console.log(i + ":" + row.name + " :" + row.age + ":" + row.tel);
+					
+					$('#table').append(
+						'<tr>' + 
+							'<td>' + row.name + '</td>' +
+							'<td>' + row.tel + '</td>' +
+							'<td>' + row.addr + '</td>' +
+						'</tr>'
+					);
+				});
+				
+				
 			}
 			function doError(){
 				console.log("error");
