@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script>
+			var page = 1;
+			function changePage(p){
+				$.ajax({
+					url : "brad58.jsp?page=" + p,
+					type: "get",
+					success : doSuccess,
+					error: doError
+				});
+			}
+			function doSuccess(){
+				console.log("success");
+				$("#page").html(page);
+			}
+			function doError(){
+				console.log("error");
+			}
+			function prev(){
+				changePage(--page);
+			}
+			function next(){
+				changePage(++page);
+			}
+			changePage(page);
+		</script>	
+		Page: <span id="page"></span>	<br />
+		<input type="button" value="上一頁" onclick="prev()"/> | 
+		<input type="button" value="下一頁" onclick="next()"/>
+		<hr />
+		<table border="1" width="100%" id="table">
+		</table>
+	</body>
+</html>
