@@ -33,11 +33,13 @@
 						</c:when>
 						<c:otherwise>
 							<c:set var="mesg" value="Login Failure" />
+							<c:remove var="member"/>
 						</c:otherwise>
 					</c:choose>				
 				</c:when>
 				<c:otherwise>
 					<c:set var="mesg" value="Login Failure" />
+					<c:remove var="member"/>
 				</c:otherwise>
 			</c:choose>
 		</c:when>

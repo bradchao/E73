@@ -1,8 +1,16 @@
+<%@page import="tw.brad.utils.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-    
+<%
+	Member member = (Member)session.getAttribute("member");
+	if (member == null){
+		response.sendRedirect("login.jsp");
+		return;
+	}
+	//out.print(member.getCname());
+%>
 <!DOCTYPE html>
 <html>
 	<sql:setDataSource
@@ -28,7 +36,11 @@
 	<body>
 	<h1>Brad Big Company</h1>
 	<hr />
-	<a href="addnew.jsp">AddNew</a>
+	<a href="addnew.jsp">AddNew</a> |
+	<a href="logout.jsp">Logout</a>
+	<hr />
+	Welcome, <%= member.getCname() %>
+	<hr />
 	<table border="1" width="100%">
 		<tr>
 			<th>id</th>
