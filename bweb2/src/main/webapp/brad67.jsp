@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="brad" %>
+<%@ taglib uri="/WEB-INF/mytags.tld" prefix="abc" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,6 +31,7 @@
 		<brad:test3 name="MySQL" price="2000" />
 		<brad:test3 name="C#" price="5000" />
 	</table>
-	
+	<hr />
+	Lottery: <abc:Lottery/>
 	</body>
 </html>
