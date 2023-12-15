@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<script>
+			function beforeSubmit(){
+				var remember = document.getElementById('remember').checked;
+				if (remember){
+					var account = document.getElementById('account').value;
+					var passwd = document.getElementById('passwd').value;
+					
+					document.cookie = "account = " + account;
+					document.cookie = "passwd = " + passwd;
+					document.cookie = "remember = " + remember;
+					
+					console.log(document.cookie);
+				}else{
+					var cookies = document.cookie.split(";");
+					for (var i=0; i<cookies.length; i++){
+						var pair = cookies[i].split("=");
+						
+						document.cookie = pair[0] + 
+							" =; expires=Thu, 01 Jan 1970 00:00:00 UTC"; 
+							
+					}
+					console.log(document.cookie);
+				}
+				return true;
+			}
+			console.log(document.cookie);
+			var cookies = {};
+			parseCookie();
+			function parseCookie(){
+				var aryCookies = document.cookie.split(";")
+				aryCookies.forEach(function(item, i){
+					var pair = item.trim().split("=");
+					cookies[pair[0]] = pair[1];
+				});
+			}
+			
+			function getCookie(key){
+				return cookies[key];
+			}
+		</script>
+	
+		<form action="brad61.jsp" onsubmit="return beforeSubmit();">
+			Account: <input type="text" name="account" id="account" /><br />
+			Password: <input type="password" name="passwd" id="passwd" /><br />
+			<input type="submit" value="Login" />
+			<input type="checkbox" id="remember" />Remember Me
+		</form>
+		<script>
+			if (getCookie('account')){
+				document.getElementById('account').value = getCookie('account');
+			}
+			if (getCookie('passwd')){
+				document.getElementById('passwd').value = getCookie('passwd');
+			}
+			if (getCookie('remember')){
+				document.getElementById('remember').checked = getCookie('remember');
+			}						
+		</script>
+	</body>
+</html>
